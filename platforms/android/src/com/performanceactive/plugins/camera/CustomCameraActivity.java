@@ -35,6 +35,7 @@ import java.io.InputStream;
 import java.util.List;
 
 import static android.hardware.Camera.Parameters.FLASH_MODE_OFF;
+import static android.hardware.Camera.Parameters.FLASH_MODE_ON;
 import static android.hardware.Camera.Parameters.FOCUS_MODE_AUTO;
 import static android.hardware.Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE;
 
@@ -128,7 +129,7 @@ public class CustomCameraActivity extends Activity {
         layout.addView(cameraPreviewView);
     }
 
-    private void createTopLeftBorder() {
+   /* private void createTopLeftBorder() {
         borderTopLeft = new ImageButton(getApplicationContext());
         setBitmap(borderTopLeft, "border_top_left.png");
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(dpToPixels(50), dpToPixels(50));
@@ -173,7 +174,7 @@ public class CustomCameraActivity extends Activity {
             parameters.setFlashMode(Parameters.FLASH_MODE_ON);
             camera.setParameters(parameters);
         }
-    }
+    } */
     
     private void createTopRightBorder() {
         borderTopRight = new ImageView(this);
@@ -230,11 +231,11 @@ public class CustomCameraActivity extends Activity {
     }
 
     private void layoutBottomBorderImagesRespectingAspectRatio() {
-        RelativeLayout.LayoutParams borderTopLeftLayoutParams = (RelativeLayout.LayoutParams)borderTopLeft.getLayoutParams();
+      //  RelativeLayout.LayoutParams borderTopLeftLayoutParams = (RelativeLayout.LayoutParams)borderTopLeft.getLayoutParams();
         RelativeLayout.LayoutParams borderTopRightLayoutParams = (RelativeLayout.LayoutParams)borderTopRight.getLayoutParams();
         RelativeLayout.LayoutParams borderBottomLeftLayoutParams = (RelativeLayout.LayoutParams)borderBottomLeft.getLayoutParams();
         RelativeLayout.LayoutParams borderBottomRightLayoutParams = (RelativeLayout.LayoutParams)borderBottomRight.getLayoutParams();
-        float height = (screenWidthInPixels() - borderTopRightLayoutParams.rightMargin - borderTopLeftLayoutParams.leftMargin) * ASPECT_RATIO;
+        //float height = (screenWidthInPixels() - borderTopRightLayoutParams.rightMargin - borderTopLeftLayoutParams.leftMargin) * ASPECT_RATIO;
         borderBottomLeftLayoutParams.bottomMargin = screenHeightInPixels() - Math.round(height) - borderTopLeftLayoutParams.topMargin;
         borderBottomLeft.setLayoutParams(borderBottomLeftLayoutParams);
         borderBottomRightLayoutParams.bottomMargin = screenHeightInPixels() - Math.round(height) - borderTopRightLayoutParams.topMargin;
