@@ -258,6 +258,7 @@ public class CustomCameraActivity extends Activity {
     private void createFlashButton() {
         flashButton = new ImageButton(getApplicationContext());
         setBitmap(flashButton, "flash.png");
+        flashButton.setScaleType(ScaleType.FIT_CENTER);
         flashButton.setBackgroundColor(Color.TRANSPARENT);
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(dpToPixels(50), dpToPixels(50));
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
@@ -287,7 +288,7 @@ public class CustomCameraActivity extends Activity {
                // takePictureWithAutoFocus();
             }
         });
-        layout.addView(captureButton);
+        layout.addView(flashButton);
     }
 
     private void setCaptureButtonImageForEvent(MotionEvent event) {
