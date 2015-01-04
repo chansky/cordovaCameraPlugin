@@ -118,9 +118,9 @@ public class CustomCameraActivity extends Activity {
         createTopRightBorder();
         createBottomLeftBorder();
         createBottomRightBorder();
+        createFlashButton();
         layoutBottomBorderImagesRespectingAspectRatio();
         createCaptureButton();
-        createFlashButton();
         setContentView(layout);
     }
 
@@ -275,19 +275,6 @@ public class CustomCameraActivity extends Activity {
         }
         flashButton.setLayoutParams(layoutParams);
         
-        flashButton.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-              //  setCaptureButtonImageForEvent(event);
-                return false;
-            }
-        });
-        flashButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               // takePictureWithAutoFocus();
-            }
-        });
         layout.addView(flashButton);
     }
 
