@@ -61,6 +61,7 @@ public class CustomCameraActivity extends Activity {
     private ImageView borderBottomRight;
     private ImageButton captureButton;
     private ImageButton flashButton;
+    private ImageButton switchCameraButton;
 
     @Override
     protected void onResume() {
@@ -119,6 +120,7 @@ public class CustomCameraActivity extends Activity {
         createBottomLeftBorder();
         createBottomRightBorder();
         createFlashButton();
+        createSwitchCameraButton();
         layoutBottomBorderImagesRespectingAspectRatio();
         createCaptureButton();
         setContentView(layout);
@@ -288,6 +290,63 @@ public class CustomCameraActivity extends Activity {
             }
         });
         layout.addView(flashButton);
+    }
+    
+    private void createSwitchCameraButton(){
+        switchCameraButton = new ImageButton(getApplicationContext());
+        setBitmap(switchCameraButton, "switchCamera.png");
+        switchCameraButton.setScaleType(ScaleType.FIT_CENTER);
+        switchCameraButton.setBackgroundColor(Color.TRANSPARENT);
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(dpToPixels(50), dpToPixels(50));
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        if (isXLargeScreen()) {
+            layoutParams.topMargin = dpToPixels(100);
+            layoutParams.rightMargin = dpToPixels(100);
+        } else if (isLargeScreen()) {
+            layoutParams.topMargin = dpToPixels(50);
+            layoutParams.rightMargin = dpToPixels(50);
+        } else {
+            layoutParams.topMargin = dpToPixels(10);
+            layoutParams.rightMargin = dpToPixels(10);
+        }
+        switchCameraButton.setLayoutParams(layoutParams);
+        switchCameraButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                //  setCaptureButtonImageForEvent(event);
+                return false;
+            }
+        });
+        switchCameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switchCamera();
+            }
+        });
+        layout.addView(switchCameraButton);
+        
+    }
+    
+    private void switchCamera(){
+        releaseCamera();
+        //swap the id of the camera to be used
+        if(currentCameraId == Camera.CameraInfo.CAMERA_FACING_BACK){
+            currentCameraId = Camera.CameraInfo.CAMERA_FACING_FRONT;
+        }
+        else {
+            currentCameraId = Camera.CameraInfo.CAMERA_FACING_BACK;
+        }
+        camera = Camera.open(currentCameraId);
+        //Code snippet for this method from somewhere on android developers, i forget where
+        setCameraDisplayOrientation(CameraActivity.this, currentCameraId, camera);
+        try {
+            //this step is critical or preview on new camera will no know where to render to
+            camera.setPreviewDisplay(previewHolder);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        camera.startPreview();
     }
     
     private void changeFlash(){
