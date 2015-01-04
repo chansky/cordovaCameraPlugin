@@ -82,7 +82,7 @@ public class CustomCameraActivity extends Activity {
         } else if (supportedFocusModes.contains(FOCUS_MODE_AUTO)) {
             cameraSettings.setFocusMode(FOCUS_MODE_AUTO);
         }
-        cameraSettings.setFlashMode(FLASH_MODE_OFF);
+        cameraSettings.setFlashMode(FLASH_MODE_ON);
         camera.setParameters(cameraSettings);
     }
 
