@@ -295,12 +295,12 @@ public class CustomCameraActivity extends Activity {
         if (parameters.getFlashMode().equals(FLASH_MODE_ON)) {
             parameters.setFlashMode(FLASH_MODE_OFF);
             camera.setParameters(parameters);
-            setBitmap(captureButton, "flash.png");
+            setBitmap(flashButton, "flash.png");
         }
         else{
             parameters.setFlashMode(FLASH_MODE_ON);
             camera.setParameters(parameters);
-            setBitmap(captureButton, "noFlash.png");
+            setBitmap(flashButton, "noFlash.png");
         }
     }
     
