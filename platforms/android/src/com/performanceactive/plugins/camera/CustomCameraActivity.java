@@ -55,7 +55,7 @@ public class CustomCameraActivity extends Activity {
     private Camera camera;
     private RelativeLayout layout;
     private FrameLayout cameraPreviewView;
-    private ImageButton borderTopLeft;
+    private ImageView borderTopLeft;
     private ImageView borderTopRight;
     private ImageView borderBottomLeft;
     private ImageView borderBottomRight;
@@ -129,8 +129,8 @@ public class CustomCameraActivity extends Activity {
         layout.addView(cameraPreviewView);
     }
 
-   /* private void createTopLeftBorder() {
-        borderTopLeft = new ImageButton(getApplicationContext());
+    private void createTopLeftBorder() {
+        borderTopLeft = new ImageView(this);
         setBitmap(borderTopLeft, "border_top_left.png");
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(dpToPixels(50), dpToPixels(50));
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
@@ -146,35 +146,8 @@ public class CustomCameraActivity extends Activity {
             layoutParams.leftMargin = dpToPixels(10);
         }
         borderTopLeft.setLayoutParams(layoutParams);
-        //ben chansky addition below:
-        borderTopLeft.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                //setBorderTopLeftImageForEvent(event);
-                //do nothing
-                return false;
-            }
-        });
-        borderTopLeft.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {  //change flash to whatever it currently isn;t
-                changeFlash();
-            }
-        });
         layout.addView(borderTopLeft);
     }
-
-    private void changeFlash(){
-        Camera.Parameters parameters = camera.getParameters();
-        if (parameters.getFlashMode().equals(android.hardware.Camera.Parameters.FLASH_MODE_ON)) {
-            parameters.setFlashMode(Parameters.FLASH_MODE_OFF);
-            camera.setParameters(parameters);
-        }
-        else{
-            parameters.setFlashMode(Parameters.FLASH_MODE_ON);
-            camera.setParameters(parameters);
-        }
-    } */
     
     private void createTopRightBorder() {
         borderTopRight = new ImageView(this);
@@ -231,11 +204,11 @@ public class CustomCameraActivity extends Activity {
     }
 
     private void layoutBottomBorderImagesRespectingAspectRatio() {
-      //  RelativeLayout.LayoutParams borderTopLeftLayoutParams = (RelativeLayout.LayoutParams)borderTopLeft.getLayoutParams();
+        RelativeLayout.LayoutParams borderTopLeftLayoutParams = (RelativeLayout.LayoutParams)borderTopLeft.getLayoutParams();
         RelativeLayout.LayoutParams borderTopRightLayoutParams = (RelativeLayout.LayoutParams)borderTopRight.getLayoutParams();
         RelativeLayout.LayoutParams borderBottomLeftLayoutParams = (RelativeLayout.LayoutParams)borderBottomLeft.getLayoutParams();
         RelativeLayout.LayoutParams borderBottomRightLayoutParams = (RelativeLayout.LayoutParams)borderBottomRight.getLayoutParams();
-        //float height = (screenWidthInPixels() - borderTopRightLayoutParams.rightMargin - borderTopLeftLayoutParams.leftMargin) * ASPECT_RATIO;
+        float height = (screenWidthInPixels() - borderTopRightLayoutParams.rightMargin - borderTopLeftLayoutParams.leftMargin) * ASPECT_RATIO;
         borderBottomLeftLayoutParams.bottomMargin = screenHeightInPixels() - Math.round(height) - borderTopLeftLayoutParams.topMargin;
         borderBottomLeft.setLayoutParams(borderBottomLeftLayoutParams);
         borderBottomRightLayoutParams.bottomMargin = screenHeightInPixels() - Math.round(height) - borderTopRightLayoutParams.topMargin;
