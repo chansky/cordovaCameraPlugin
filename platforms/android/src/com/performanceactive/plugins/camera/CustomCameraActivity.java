@@ -325,14 +325,14 @@ public class CustomCameraActivity extends Activity {
         switchCameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //switchCamera();
+                switchCamera();
             }
         });
         layout.addView(switchCameraButton);
         
     }
     
-   /* private void switchCamera(){
+    private void switchCamera(){
         releaseCamera();
         //swap the id of the camera to be used
         if(currentCameraId == Camera.CameraInfo.CAMERA_FACING_BACK){
@@ -344,6 +344,9 @@ public class CustomCameraActivity extends Activity {
             currentCameraId = Camera.CameraInfo.CAMERA_FACING_BACK;
         }
         camera = Camera.open(currentCameraId);
+        configureCamera();
+        displayCameraPreview();
+      /*  camera = Camera.open(currentCameraId);
         //Code snippet for this method from somewhere on android developers, i forget where
         setCameraDisplayOrientation(CameraActivity.this, currentCameraId, camera);
         try {
@@ -352,8 +355,8 @@ public class CustomCameraActivity extends Activity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        camera.startPreview();
-    } */
+        camera.startPreview(); */
+    }
     
     private int findFrontFacingCameraID() {
         int cameraId = -1;
