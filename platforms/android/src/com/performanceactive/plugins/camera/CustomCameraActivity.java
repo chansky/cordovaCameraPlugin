@@ -392,15 +392,17 @@ public class CustomCameraActivity extends Activity {
     
     private void changeFlash(){
         Camera.Parameters parameters = camera.getParameters();
-        if (parameters.getFlashMode().equals(FLASH_MODE_ON)) {
-            parameters.setFlashMode(FLASH_MODE_OFF);
-            camera.setParameters(parameters);
-            setBitmap(flashButton, "flash.png");
-        }
-        else{
-            parameters.setFlashMode(FLASH_MODE_ON);
-            camera.setParameters(parameters);
-            setBitmap(flashButton, "noFlash.png");
+        if(currentCameraId == findRearFacingCameraID()){
+            if (parameters.getFlashMode().equals(FLASH_MODE_ON)) {
+                parameters.setFlashMode(FLASH_MODE_OFF);
+                camera.setParameters(parameters);
+                setBitmap(flashButton, "flash.png");
+            }
+            else{
+                parameters.setFlashMode(FLASH_MODE_ON);
+                camera.setParameters(parameters);
+                setBitmap(flashButton, "noFlash.png");
+            }
         }
     }
     
