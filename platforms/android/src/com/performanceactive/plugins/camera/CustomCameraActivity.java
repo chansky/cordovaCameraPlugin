@@ -120,7 +120,7 @@ public class CustomCameraActivity extends Activity {
         layout.setLayoutParams(layoutParams);
         createCameraPreview();
         //createTopLeftBorder();
-        createTopRightBorder();
+        //createTopRightBorder();
         createBottomLeftBorder();
         createBottomRightBorder();
         createFlashButton();
@@ -213,7 +213,7 @@ public class CustomCameraActivity extends Activity {
 
     private void layoutBottomBorderImagesRespectingAspectRatio() {
         RelativeLayout.LayoutParams borderTopLeftLayoutParams = (RelativeLayout.LayoutParams)flashButton.getLayoutParams();
-        RelativeLayout.LayoutParams borderTopRightLayoutParams = (RelativeLayout.LayoutParams)borderTopRight.getLayoutParams();
+        RelativeLayout.LayoutParams borderTopRightLayoutParams = (RelativeLayout.LayoutParams)switchCameraButton.getLayoutParams();
         RelativeLayout.LayoutParams borderBottomLeftLayoutParams = (RelativeLayout.LayoutParams)borderBottomLeft.getLayoutParams();
         RelativeLayout.LayoutParams borderBottomRightLayoutParams = (RelativeLayout.LayoutParams)borderBottomRight.getLayoutParams();
         float height = (screenWidthInPixels() - borderTopRightLayoutParams.rightMargin - borderTopLeftLayoutParams.leftMargin) * ASPECT_RATIO;
@@ -325,7 +325,7 @@ public class CustomCameraActivity extends Activity {
         switchCameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switchCamera();
+                //switchCamera();
             }
         });
         layout.addView(switchCameraButton);
@@ -363,7 +363,7 @@ public class CustomCameraActivity extends Activity {
             CameraInfo info = new CameraInfo();
             Camera.getCameraInfo(i, info);
             if (info.facing == CameraInfo.CAMERA_FACING_FRONT) {
-                Log.d(TAG, "Camera found");
+               // Log.d(TAG, "Camera found");
                 cameraId = i;
                 break;
             }
@@ -379,7 +379,7 @@ public class CustomCameraActivity extends Activity {
             CameraInfo info = new CameraInfo();
             Camera.getCameraInfo(i, info);
             if (info.facing == CameraInfo.CAMERA_FACING_BACK) {
-                Log.d(TAG, "Camera found");
+                //Log.d(TAG, "Camera found");
                 cameraId = i;
                 break;
             }
