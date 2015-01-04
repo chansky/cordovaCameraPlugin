@@ -60,6 +60,7 @@ public class CustomCameraActivity extends Activity {
     private ImageView borderBottomLeft;
     private ImageView borderBottomRight;
     private ImageButton captureButton;
+    private ImageButton flashButton;
 
     @Override
     protected void onResume() {
@@ -113,12 +114,13 @@ public class CustomCameraActivity extends Activity {
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         layout.setLayoutParams(layoutParams);
         createCameraPreview();
-        createTopLeftBorder();
+        //createTopLeftBorder();
         createTopRightBorder();
         createBottomLeftBorder();
         createBottomRightBorder();
         layoutBottomBorderImagesRespectingAspectRatio();
         createCaptureButton();
+        createFlashButton();
         setContentView(layout);
     }
 
@@ -204,7 +206,7 @@ public class CustomCameraActivity extends Activity {
     }
 
     private void layoutBottomBorderImagesRespectingAspectRatio() {
-        RelativeLayout.LayoutParams borderTopLeftLayoutParams = (RelativeLayout.LayoutParams)borderTopLeft.getLayoutParams();
+        RelativeLayout.LayoutParams borderTopLeftLayoutParams = (RelativeLayout.LayoutParams)flashButton.getLayoutParams();
         RelativeLayout.LayoutParams borderTopRightLayoutParams = (RelativeLayout.LayoutParams)borderTopRight.getLayoutParams();
         RelativeLayout.LayoutParams borderBottomLeftLayoutParams = (RelativeLayout.LayoutParams)borderBottomLeft.getLayoutParams();
         RelativeLayout.LayoutParams borderBottomRightLayoutParams = (RelativeLayout.LayoutParams)borderBottomRight.getLayoutParams();
@@ -251,6 +253,26 @@ public class CustomCameraActivity extends Activity {
             }
         });
         layout.addView(captureButton);
+    }
+    
+    private void createFlashButton() {
+        flashButton = new ImageButton(getApplicationContext());
+        setBitmap(flashButton, "flash.png");
+        flashButton.setBackgroundColor(Color.TRANSPARENT);
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(dpToPixels(50), dpToPixels(50));
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+        if (isXLargeScreen()) {
+            layoutParams.topMargin = dpToPixels(100);
+            layoutParams.leftMargin = dpToPixels(100);
+        } else if (isLargeScreen()) {
+            layoutParams.topMargin = dpToPixels(50);
+            layoutParams.leftMargin = dpToPixels(50);
+        } else {
+            layoutParams.topMargin = dpToPixels(10);
+            layoutParams.leftMargin = dpToPixels(10);
+        }
+        flashButton.setLayoutParams(layoutParams);
     }
 
     private void setCaptureButtonImageForEvent(MotionEvent event) {
