@@ -329,7 +329,7 @@ public class CustomCameraActivity extends Activity {
     }
     
     private void switchCamera(){
-        releaseCamera();
+       /* releaseCamera();
         //swap the id of the camera to be used
         if(currentCameraId == Camera.CameraInfo.CAMERA_FACING_BACK){
             currentCameraId = Camera.CameraInfo.CAMERA_FACING_FRONT;
@@ -346,7 +346,7 @@ public class CustomCameraActivity extends Activity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        camera.startPreview();
+        camera.startPreview(); */
     }
     
     private void changeFlash(){
