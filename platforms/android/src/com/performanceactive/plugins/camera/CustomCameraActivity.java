@@ -332,7 +332,7 @@ public class CustomCameraActivity extends Activity {
         
     }
     
-    private void switchCamera(){
+   /* private void switchCamera(){
         releaseCamera();
         //swap the id of the camera to be used
         if(currentCameraId == Camera.CameraInfo.CAMERA_FACING_BACK){
@@ -353,7 +353,7 @@ public class CustomCameraActivity extends Activity {
             e.printStackTrace();
         }
         camera.startPreview();
-    }
+    } */
     
     private int findFrontFacingCameraID() {
         int cameraId = -1;
