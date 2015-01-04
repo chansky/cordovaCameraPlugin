@@ -54,7 +54,7 @@ public class CustomCameraActivity extends Activity {
     public static int RESULT_ERROR = 2;
 
     private Camera camera;
-    private int currentCameraId;
+    private int currentCameraId = findRearFacingCameraID();
     private RelativeLayout layout;
     private FrameLayout cameraPreviewView;
     private ImageView borderTopLeft;
@@ -88,7 +88,7 @@ public class CustomCameraActivity extends Activity {
         }
         cameraSettings.setFlashMode(FLASH_MODE_OFF);
         camera.setParameters(cameraSettings);
-        currentCameraId = findRearFacingCameraID();
+        
 
     }
 
