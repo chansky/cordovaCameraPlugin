@@ -274,10 +274,34 @@ public class CustomCameraActivity extends Activity {
             layoutParams.leftMargin = dpToPixels(10);
         }
         flashButton.setLayoutParams(layoutParams);
-        
+        flashButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+              //  setCaptureButtonImageForEvent(event);
+                return false;
+            }
+        });
+        flashButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeFlash();
+            }
+        });
         layout.addView(flashButton);
     }
-
+    
+    private void changeFlash(){
+        Camera.Parameters parameters = camera.getParameters();
+        if (parameters.getFlashMode().equals(android.hardware.Camera.Parameters.FLASH_MODE_ON)) {
+            parameters.setFlashMode(Parameters.FLASH_MODE_OFF);
+            camera.setParameters(parameters);
+        }
+        else{
+            parameters.setFlashMode(Parameters.FLASH_MODE_ON);
+            camera.setParameters(parameters);
+        }
+    }
+    
     private void setCaptureButtonImageForEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             setBitmap(captureButton, "capture_button_pressed.png");
