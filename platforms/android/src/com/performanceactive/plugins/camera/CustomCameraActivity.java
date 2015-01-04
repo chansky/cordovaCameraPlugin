@@ -273,6 +273,21 @@ public class CustomCameraActivity extends Activity {
             layoutParams.leftMargin = dpToPixels(10);
         }
         flashButton.setLayoutParams(layoutParams);
+        
+        flashButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+              //  setCaptureButtonImageForEvent(event);
+                return false;
+            }
+        });
+        flashButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // takePictureWithAutoFocus();
+            }
+        });
+        layout.addView(captureButton);
     }
 
     private void setCaptureButtonImageForEvent(MotionEvent event) {
