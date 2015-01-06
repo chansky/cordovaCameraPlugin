@@ -18,6 +18,8 @@
     AVCaptureStillImageOutput *_stillImageOutput;
     UIView *_buttonPanel;
     UIButton *_captureButton;
+    UIButton *_flashButton;
+    UIButton *_switchCameraButton;
     UIButton *_backButton;
     UIImageView *_topLeftGuide;
     UIImageView *_topRightGuide;
@@ -318,6 +320,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     if (wasAdjustingFocus && isNowFocused) {
         [_rearCamera removeObserver:self forKeyPath:@"adjustingFocus"];
         [self takePicture];
+        [self dealloc];  //i added this
     }
 }
 
