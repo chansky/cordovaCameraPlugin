@@ -320,7 +320,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     if (wasAdjustingFocus && isNowFocused) {
         [_rearCamera removeObserver:self forKeyPath:@"adjustingFocus"];
         [self takePicture];
-        [self dealloc];  //i added this
+       // [self dealloc];  //i added this
     }
 }
 
