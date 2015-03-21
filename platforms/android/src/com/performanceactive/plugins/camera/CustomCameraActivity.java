@@ -440,7 +440,11 @@ public class CustomCameraActivity extends Activity {
     }
     
     private void goToFeed(){
-        finishWithError("GO TO FEED SCREEN"); //hack yo
+        //finishWithError("GO TO FEED SCREEN"); //hack yo
+        Intent data = new Intent();
+        data.putExtra(IMAGE_URI, "GO TO FEED SCREEN");
+        setResult(RESULT_OK, data);
+        finish();
     }
     
     private void takePicture() {
