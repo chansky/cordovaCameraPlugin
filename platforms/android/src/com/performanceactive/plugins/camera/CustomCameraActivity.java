@@ -466,7 +466,7 @@ public class CustomCameraActivity extends Activity {
         protected Void doInBackground(byte[]... jpegData) {
             try {
                 String filename = getIntent().getStringExtra(FILENAME);
-                int quality = getIntent().getIntExtra(QUALITY, 80);
+                int quality = getIntent().getIntExtra(QUALITY, 100);  //used to be 80 instead of 100
                 File capturedImageFile = new File(getCacheDir(), filename);
                 Bitmap capturedImage = getScaledBitmap(jpegData[0]);
                 capturedImage = correctCaptureImageOrientation(capturedImage);
